@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "my_bucket" {
 }
 
 # Enable versioning for the S3 bucket
-resource "aws_s3_bucket" "my_bucket" {
+resource "aws_s3_bucket" "my_buckets" {
   bucket = "my-bucket"
   versioning {
     enabled = true

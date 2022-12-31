@@ -8,13 +8,13 @@ data "http" "ip" {
 }
 
 # Create the S3 bucket
-resource "aws_s3_bucket" "my_bucket" {
+resource "aws_s3_bucket" "mymy_bucket" {
   bucket = "my-bucket"
   acl    = "public-read"
 }
 
 # Enable versioning for the S3 bucket
-resource "aws_s3_bucket" "my_buckets" {
+resource "aws_s3_bucket" "mymy_buckets" {
   bucket = "my-bucket"
   versioning {
     enabled = true

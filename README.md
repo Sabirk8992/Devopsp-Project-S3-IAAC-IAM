@@ -52,7 +52,7 @@ and just go next >> next.
 
 - Once the instance is launched, connect to it using SSH from your terminal. You will need the private key file for the key pair you selected .
 
-- Once you are logged in to the instance, install Terraform by following the instructions in the Terraform documentation. You can install Terraform using a package manager (e.g., apt) or by downloading the Terraform binary from the Terraform website.
+- Once you are logged in to the instance, install Terraform by following the instructions in the [Terraform documentation](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) or [This Steps](https://spacelift.io/blog/how-to-install-terraform) . You can install Terraform using a package manager (e.g., apt) or by downloading the Terraform binary from the Terraform website.
 
 - Create a new directory for your Terraform project and navigate to that directory in the terminal.
 
@@ -61,7 +61,7 @@ and just go next >> next.
 - Create a Terraform configuration file with a ".tf" extension. This file should contain the configuration for the resources you want to create with Terraform. You can find documentation for the various resource types and their configuration options in the Terraform documentation.
 
 (you can copy my code direct into that directory using vi main.tf)
-#### or more easy you can ```git clone https://github.com/Sabirk8992/Devopsp-Project-S3-IAAC-IAM.git ```    then run the Terrafom.
+#### or more easy you can ```git clone https://github.com/Sabirk8992/Devopsp-Project-S3-IAAC-IAM.git ```  cd to Devopsp-Project-S3-IAAC-IAM directory then run the Terrafom.
 
 
 

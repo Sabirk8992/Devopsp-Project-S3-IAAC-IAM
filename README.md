@@ -70,7 +70,7 @@ and just go next >> next.
 
 Here is a Terraform script that will create an S3 bucket in the us-east-1 region, enable versioning for the bucket, update the bucket ACL to allow public access, create an IAM policy that allows bucket objects only from a specific whitelisted public IP, and update the bucket policy with the IAM policy created in the previous step
 
-Here click on https://api.ipify.org and add you Public IP 
+Here  https://api.ipify.org add your Public IP 
 
 
 

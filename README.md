@@ -5,7 +5,7 @@ Goal of this project to create public S3 Bucket in AWS cloud and update Bucket p
 
 
 
-## Screenshots
+
 
 ![App Screenshot](https://i.ibb.co/PzTp9kb/public-bucket.png)
 

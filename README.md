@@ -61,7 +61,7 @@ and just go next >> next.
 - Create a Terraform configuration file with a ".tf" extension. This file should contain the configuration for the resources you want to create with Terraform. You can find documentation for the various resource types and their configuration options in the Terraform documentation.
 
 (you can copy my code direct into that directory using vi main.tf)
-#### or more easy you can ```git clone git@github.com:Sabirk8992/Devopsp-Project-S3-IAAC-IAM.git ```    then run the Terrafom.
+#### or more easy you can ```git clone https://github.com/Sabirk8992/Devopsp-Project-S3-IAAC-IAM.git ```    then run the Terrafom.
 
 
 

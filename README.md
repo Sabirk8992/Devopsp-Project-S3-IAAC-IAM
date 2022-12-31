@@ -135,15 +135,15 @@ resource "aws_s3_bucket_policy" "my_policy" {
 
 Here is a breakdown of the steps taken in this code:
 
-The AWS provider is configured with the region "us-east-1". This specifies which region the resources in this configuration will be created in.
+- The AWS provider is configured with the region "us-east-1". This specifies which region the resources in this configuration will be created in.
 
-The "http" data source is used to retrieve the public IP address of the system the code is being run on. This IP address is stored in the "ip" variable.
+- The "http" data source is used to retrieve the public IP address of the system the code is being run on. This IP address is stored in the "ip" variable.
 
-An S3 bucket is created with the name "my-bucket" and an access control list (ACL) of "public-read".
+- An S3 bucket is created with the name "my-bucket" and an access control list (ACL) of "public-read".
 
-The same S3 bucket is modified to enable versioning.
+- The same S3 bucket is modified to enable versioning.
 
-An IAM policy is created that allows bucket objects only from the whitelisted public IP address stored in the "ip" variable.
+- An IAM policy is created that allows bucket objects only from the whitelisted public IP address stored in the "ip" variable.
 
 The bucket policy for the "my-bucket" S3 bucket is updated to use the IAM policy created in the previous step.This code will create an S3 bucket with versioning enabled, and only allow objects to be added to the bucket from a specific public IP address.
 

@@ -1,5 +1,5 @@
 
-# Project TitleDeploy S3 Bucket policy using Terraform IaC
+# Deploying S3 Bucket policy using Terraform IaC
 
 Goal of this project to create public S3 Bucket in AWS cloud and update Bucket policy to allow access to the bucket only from whitelisted public IPs.
 

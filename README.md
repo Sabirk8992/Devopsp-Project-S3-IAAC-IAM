@@ -27,7 +27,7 @@ To create an AWS IAM user access key and secret key that can access an Amazon S3
 
 - In the navigation pane, choose Users and then choose the name of the user you want to create an access key for.
 
-- Choose the Security credentials tab and then choose Create access key.
+- Choose the Security credentials tab and then choose Create access key. COPY Both on any text file.
 
 - Choose Download .csv file to download the access key and secret key. The .csv file will contain the access key ID and secret access key for the user.
 
@@ -56,17 +56,12 @@ and just go next >> next.
 
 - Once you are logged in to the instance, install Terraform by following the instructions in the [Terraform documentation](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) or [This Steps](https://spacelift.io/blog/how-to-install-terraform) . You can install Terraform using a package manager (e.g., apt) or by downloading the Terraform binary from the Terraform website.
 
-- Create a new directory for your Terraform project and navigate to that directory in the terminal.
+- If you want to create main.tf file from your self the juys copy paste the below code OR
 
-- Initialize Terraform by running the terraform init command. This will download any necessary plugins and initialize the working directory.
+- You can copy my code direct into the directory by `vi main.tf`
+####  you can ```git clone https://github.com/Sabirk8992/Devopsp-Project-S3-IAAC-IAM.git ```  cd to Devopsp-Project-S3-IAAC-IAM directory then run the Terrafom.
 
-- Create a Terraform configuration file with a ".tf" extension. This file should contain the configuration for the resources you want to create with Terraform. You can find documentation for the various resource types and their configuration options in the Terraform documentation.
-
-(you can copy my code direct into that directory using vi main.tf)
-#### or more easy you can ```git clone https://github.com/Sabirk8992/Devopsp-Project-S3-IAAC-IAM.git ```  cd to Devopsp-Project-S3-IAAC-IAM directory then run the Terrafom.
-
-
-
+- Initialize Terraform by running the `terraform init` command. This will download any necessary plugins and initialize the working directory.
 
 ## Terraform Script
 
@@ -128,9 +123,9 @@ EOF
 
 ## Run the Code Now
 
-- Run the terraform plan command to preview the changes that will be made to your infrastructure.
+- Run the `terraform plan` command to preview the changes that will be made to your infrastructure.
 
-- If the output of the terraform plan command looks correct, run the terraform apply command to apply the changes to your infrastructure.
+- If the output of the `terraform plan` command looks correct, run the `terraform apply` command to apply the changes to your infrastructure.
 
 That's it! You should now be able to use Terraform to manage your infrastructure from the terminal on your Ubuntu EC2 instance.
 
@@ -148,11 +143,13 @@ Here is the basic syntax for this command:
 
 For example, to upload a file named myfile.txt from the local machine to an S3 bucket named my-bucket, you would run the following command:
 
+```aws s3 cp myfile.txt s3://my-bucketname```
 
-```aws s3 cp myfile.txt s3://my-bucket```
+### 2. Access the Objects using Object URL from public browser(While your system has same public IP whitelisted).Use Copy Url Option of that file inside the S3 Bucket 
 
-### 2. Access the Objects using Object URL from public browser(While your system has same public IP whitelisted)
-### 3. Access the Objects using Object URL from public browser (While your system has different public IP, Reconnect to internet might change your public IP for testing.)
+Then
+
+### 3. Access the Objects using Object URL from public browser (While your system has different public IP, Reconnect to internet might change your public IP for testing or use mobile browser with same url) hint: ACCESS DENIED :)
 
 ## DONE
 

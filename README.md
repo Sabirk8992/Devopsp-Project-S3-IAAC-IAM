@@ -16,12 +16,12 @@ Goal of this project to create public S3 Bucket in AWS cloud and update Bucket p
 
 -AWS IAM user access key & secret key accessing S3.
 
--Visual Studio Code configured to develop Terraform IaC
+-Visual Studio Code configured to develop Terraform IaC (optional) or you can directly clone the file as shown below.
 
 
 ## AWS IAM user access key & secret key accessing S3
 
-- To create an AWS IAM user access key and secret key that can access an Amazon S3 bucket, follow these steps:
+To create an AWS IAM user access key and secret key that can access an Amazon S3 bucket, follow these steps:
 
 - Sign in to the AWS Management Console and navigate to the IAM dashboard.
 
@@ -51,6 +51,8 @@ and just go next >> next.
 - In the "Select an existing key pair or create a new key pair" dialog, select an existing key pair or create a new key pair and then click the "Launch Instances" button.
 
 - Once the instance is launched, connect to it using SSH from your terminal. You will need the private key file for the key pair you selected .
+- Now install and connect AWS CLI from you ec2 linux to use the aws resources etc.Follow these blog  [AWS CLI configure with aws Secret Key](https://www.cyberciti.biz/faq/how-to-install-aws-cli-on-linux/)
+- 
 
 - Once you are logged in to the instance, install Terraform by following the instructions in the [Terraform documentation](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) or [This Steps](https://spacelift.io/blog/how-to-install-terraform) . You can install Terraform using a package manager (e.g., apt) or by downloading the Terraform binary from the Terraform website.
 
@@ -68,53 +70,39 @@ and just go next >> next.
 
 ## Terraform Script
 
-Here is a Terraform script that will create an S3 bucket in the us-east-1 region, enable versioning for the bucket, update the bucket ACL to allow public access, create an IAM policy that allows bucket objects only from a specific whitelisted public IP, and update the bucket policy with the IAM policy created in the previous step
+#### IMPORTANT : 
 
-Here  https://api.ipify.org add your Public IP 
-
-
-
-
+Change the bucket name to your name `mysabirbucket` to `myyournamebucket` , if you use same name it will error you as name cannot be same
 ```
-provider "aws" {           
-  region = "us-east-1"
+provider "aws" {
+  region = "ap-south-1"
 }
 
-# Get the public IP of the system
-data "http" "ip" {
-  url = "https://api.ipify.org"
+resource "aws_s3_bucket" "mysabirbucket" {
+  bucket = "mysabirbucket"
+}
+resource "aws_s3_bucket_acl" "mysabirbucket" {
+  bucket = "mysabirbucket"
+  acl    = "private"
 }
 
-# Create the S3 bucket
-resource "aws_s3_bucket" "my_bucket" {
-  bucket = "my-bucket"
-  acl    = "public-read"
-}
-
-# Enable versioning for the S3 bucket
-resource "aws_s3_bucket" "my_bucket" {
-  bucket = "my-bucket"
-  versioning {
-    enabled = true
-  }
-}
-
-# Create the IAM policy that allows bucket objects only from a specific whitelisted public IP
-resource "aws_iam_policy" "my_policy" {
-  name        = "my-policy"
-  description = "IAM policy that allows bucket objects only from a specific whitelisted public IP"
+resource "aws_s3_bucket_policy" "mysabirbucket" {
+  bucket = "${aws_s3_bucket.mysabirbucket.id}"
 
   policy = <<EOF
 {
   "Version": "2012-10-17",
+  "Id": "S3PolicyId1",
   "Statement": [
     {
+      "Sid": "IPAllow",
       "Effect": "Allow",
+      "Principal": "*",
       "Action": "s3:*",
-      "Resource": "arn:aws:s3:::my-bucket/*",
+      "Resource": "arn:aws:s3:::mysabirbucket/*",
       "Condition": {
         "IpAddress": {
-          "aws:SourceIp": "${data.http.ip.body}"
+          "aws:SourceIp": "122.169.54.0/24"
         }
       }
     }
@@ -122,31 +110,21 @@ resource "aws_iam_policy" "my_policy" {
 }
 EOF
 }
-
-# Update the bucket policy with the IAM policy created in the previous step
-resource "aws_s3_bucket_policy" "my_policy" {
-  bucket = "my-bucket"
-  policy = "${aws_iam_policy.my_policy.arn}"
-}
-
 ```
+
     
 ## Here is a breakdown of the steps taken in this code:
 
+- The provider block declares the provider that is being used. In this case, the provider is AWS. The region attribute specifies the region in which the resources will be created.
 
-Here is a breakdown of the steps taken in this code:
+- The aws_s3_bucket resource creates an S3 bucket with the name specified in the bucket attribute. In this case, the bucket will be named "mysabirbucket".
 
-- The AWS provider is configured with the region "us-east-1". This specifies which region the resources in this configuration will be created in.
+- The aws_s3_bucket_acl resource sets the access control list (ACL) for the S3 bucket specified in the bucket attribute. In this case, the ACL is set to "private".
 
-- The "http" data source is used to retrieve the public IP address of the system the code is being run on. This IP address is stored in the "ip" variable.
+- The aws_s3_bucket_policy resource sets the bucket policy for the S3 bucket specified in the bucket attribute. 
 
-- An S3 bucket is created with the name "my-bucket" and an access control list (ACL) of "public-read".
+- The bucket policy is defined in the policy attribute as a string in JSON format. In this case, the policy allows any AWS principals to perform any S3 actions on the bucket, but only if the request comes from the IP address range 122.169.54.0/24.
 
-- The same S3 bucket is modified to enable versioning.
-
-- An IAM policy is created that allows bucket objects only from the whitelisted public IP address stored in the "ip" variable.
-
-The bucket policy for the "my-bucket" S3 bucket is updated to use the IAM policy created in the previous step.This code will create an S3 bucket with versioning enabled, and only allow objects to be added to the bucket from a specific public IP address.
 
 ## Run the Code Now
 

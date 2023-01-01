@@ -59,15 +59,16 @@ and just go next >> next.
 - If you want to create main.tf file from your self the juys copy paste the below code OR
 
 - You can copy my code direct into the directory by `vi main.tf`
-####  you can ```git clone https://github.com/Sabirk8992/Devopsp-Project-S3-IAAC-IAM.git ```  cd to Devopsp-Project-S3-IAAC-IAM directory then run the Terrafom.
+####  you can ```git clone https://github.com/Sabirk8992/Devopsp-Project-S3-IAAC-IAM.git ```  cd to Devopsp-Project-S3-IAAC-IAM directory  you will find the main.tf file to run for Terrafom.
 
-- Initialize Terraform by running the `terraform init` command. This will download any necessary plugins and initialize the working directory.
+- Initialize Terraform by running the `terraform init` command in that directory.This will download any necessary plugins and initialize the working directory.
 
 ## Terraform Script
 
 #### IMPORTANT : 
 
-Change the bucket name to your name `mysabirbucket` to `myyournamebucket` , if you use same name it will error you as name cannot be same
+- Change the bucket name with your name `mysabirbucket` to `myyournamebucket` , if you use same name it will error you as name cannot be same.
+- Check your IP Range here i have added my range ``"aws:SourceIp": "122.169.54.0/24"``  but it might be diffrent for you. TO find this range first check your public ip address ipv4 on google and copy your ip with /24 and add it https://mxtoolbox.com/subnetcalculator.aspx then look at the CIDR  and paste it in ``"aws:SourceIp":` .
 ```
 provider "aws" {
   region = "ap-south-1"
